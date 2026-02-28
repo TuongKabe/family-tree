@@ -10,7 +10,7 @@ status: approved
 
 # AncestorTree Documentation
 
-> Gia Phả Điện Tử - Họ Đặng làng Kỷ Các
+> Gia Phả Điện Tử - Cây gia phả làng Kỷ Các
 
 ## SDLC Framework v6.1.0 - LITE Tier
 

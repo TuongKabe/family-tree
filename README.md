@@ -1,6 +1,6 @@
 # AncestorTree
 
-> **Gia Phả Điện Tử - Họ Đặng làng Kỷ Các, Thạch Lâm, Hà Tĩnh**
+> **Gia Phả Điện Tử - Cây gia phả**
 
 Phần mềm quản lý gia phả điện tử giúp gìn giữ và truyền thừa thông tin dòng họ qua các thế hệ.
 

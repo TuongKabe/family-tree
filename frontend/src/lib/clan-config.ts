@@ -7,10 +7,10 @@
  */
 
 // Short clan name (e.g. "Họ Đặng")
-export const CLAN_NAME = process.env.NEXT_PUBLIC_CLAN_NAME || 'Họ Đặng';
+export const CLAN_NAME = process.env.NEXT_PUBLIC_CLAN_NAME || 'Cây gia phả';
 
 // Full clan name with location (e.g. "Họ Đặng làng Kỷ Các")
-export const CLAN_FULL_NAME = process.env.NEXT_PUBLIC_CLAN_FULL_NAME || 'Họ Đặng làng Kỷ Các';
+export const CLAN_FULL_NAME = process.env.NEXT_PUBLIC_CLAN_FULL_NAME || 'Cây gia phả';
 
 // Derived: first letter of the family surname (e.g. "Đ" from "Họ Đặng")
 const parts = CLAN_NAME.split(' ');

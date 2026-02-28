@@ -297,7 +297,7 @@ MOBILE (<768px)
 ```
 ┌─────────────────────────────────────┐
 │  ┌─────┐                            │
-│  │  Đ  │  Họ Đặng làng Kỷ Các    │  ← Logo + Family name
+│  │  Đ  │  Cây gia phả làng Kỷ Các    │  ← Logo + Family name
 │  └─────┘                            │
 ├─────────────────────────────────────┤
 │                                     │
@@ -351,7 +351,7 @@ MOBILE (<768px)
 │                                                                     │
 │                    ╔═══════════════════════════════╗                │
 │                    ║                               ║                │
-│                    ║    Họ Đặng làng Kỷ Các     ║  ← Hero        │
+│                    ║    Cây gia phả làng Kỷ Các     ║  ← Hero        │
 │                    ║                               ║                │
 │                    ║  "Gìn giữ tinh hoa -         ║                │
 │                    ║   Tiếp bước cha ông"         ║                │
