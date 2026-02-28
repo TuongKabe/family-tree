@@ -1,0 +1,39 @@
+# Supabase CLI Configuration for AncestorTree Local Development
+# Docs: https://supabase.com/docs/guides/cli/config
+
+[project]
+id = "ancestor-tree-local"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "storage"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+major_version = 15
+
+[studio]
+enabled = true
+port = 54323
+
+[auth]
+enabled = true
+site_url = "http://localhost:4000"
+additional_redirect_urls = ["http://localhost:4000"]
+
+[auth.email]
+enable_signup = true
+double_confirm_changes = false
+enable_confirmations = false
+
+[storage]
+enabled = true
+file_size_limit = "10MB"
+
+[storage.buckets.media]
+public = true
+file_size_limit = "10MB"
+allowed_mime_types = ["image/jpeg", "image/png", "image/webp", "image/gif", "application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "video/mp4", "video/webm"]

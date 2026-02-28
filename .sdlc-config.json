@@ -1,0 +1,22 @@
+{
+  "$schema": "https://mts-sdlc.dev/schemas/config.json",
+  "version": "6.1.0",
+  "tier": "LITE",
+  "project": {
+    "name": "AncestorTree",
+    "description": "Digital Family Tree Management System - Gia Phả Điện Tử Chi tộc Đặng Đình",
+    "repository": "https://github.com/user/AncestorTree"
+  },
+  "stages": [
+    "00-foundation",
+    "01-planning",
+    "02-design",
+    "04-build",
+    "05-test"
+  ],
+  "conventions": {
+    "commitPrefix": true,
+    "branchNaming": "feature|fix|docs|chore/description",
+    "prTemplate": true
+  }
+}

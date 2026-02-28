@@ -1,0 +1,20 @@
+# AncestorTree — robots.txt
+# Allow landing page, disallow authenticated routes
+
+User-agent: *
+Allow: /welcome
+Disallow: /people
+Disallow: /tree
+Disallow: /directory
+Disallow: /events
+Disallow: /admin
+Disallow: /login
+Disallow: /register
+Disallow: /forgot-password
+Disallow: /reset-password
+Disallow: /achievements
+Disallow: /charter
+Disallow: /cau-duong
+Disallow: /contributions
+Disallow: /documents
+Disallow: /fund

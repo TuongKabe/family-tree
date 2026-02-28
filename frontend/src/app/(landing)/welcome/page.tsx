@@ -1,0 +1,574 @@
+/**
+ * @project AncestorTree
+ * @file src/app/(landing)/welcome/page.tsx
+ * @description Public landing page — 9 sections, Vietnamese-first, SSR static
+ * @version 1.0.0
+ * @updated 2026-02-26
+ */
+
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import {
+  GitBranch, Calendar, Users, Shield, Download, Bug, LogIn,
+  Lightbulb, MessageCircle, Code2, Heart,
+  Monitor, Apple, ChevronRight, Award, BookOpen, Utensils,
+} from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+
+const GITHUB_REPO = 'https://github.com/Minh-Tam-Solution/AncestorTree';
+const GITHUB_RELEASES = `${GITHUB_REPO}/releases`;
+const GITHUB_ISSUES = `${GITHUB_REPO}/issues`;
+const GITHUB_DISCUSSIONS = `${GITHUB_REPO}/discussions`;
+
+export const metadata: Metadata = {
+  title: 'AncestorTree — Gia Phả Điện Tử',
+  description:
+    'Phần mềm mã nguồn mở quản lý gia phả điện tử. Cây gia phả tương tác, lịch âm dương, quản lý dòng họ. Miễn phí, tự host, có bản Desktop offline.',
+  alternates: {
+    canonical: 'https://ancestortree.info/welcome',
+  },
+  openGraph: {
+    title: 'AncestorTree — Gia Phả Điện Tử',
+    description: 'Gìn giữ tinh hoa — Tiếp bước cha ông',
+    type: 'website',
+    locale: 'vi_VN',
+    url: 'https://ancestortree.info/welcome',
+    images: [{ url: '/og-landing.png', width: 1200, height: 630, alt: 'AncestorTree' }],
+  },
+};
+
+// -- Data --
+
+const features = [
+  {
+    icon: GitBranch,
+    title: 'Cây gia phả tương tác',
+    desc: '10+ đời hiển thị, zoom, pan, lọc theo gốc. SVG rendering với layout engine tự phát triển.',
+    color: 'text-emerald-600',
+    bg: 'bg-emerald-50',
+  },
+  {
+    icon: Calendar,
+    title: 'Lịch âm dương & ngày giỗ',
+    desc: 'Tự động chuyển đổi âm-dương, nhắc giỗ chạp hàng năm theo lịch truyền thống.',
+    color: 'text-amber-600',
+    bg: 'bg-amber-50',
+  },
+  {
+    icon: Users,
+    title: 'Quản lý chi / nhánh',
+    desc: 'Phân chia chi-nhánh rõ ràng, tính đời tự động, ghi nhận quan hệ cha-mẹ-con-vợ chồng.',
+    color: 'text-blue-600',
+    bg: 'bg-blue-50',
+  },
+  {
+    icon: Award,
+    title: 'Vinh danh & quỹ khuyến học',
+    desc: 'Ghi nhận thành tích, quản lý quỹ khuyến học với tài khoản minh bạch.',
+    color: 'text-purple-600',
+    bg: 'bg-purple-50',
+  },
+  {
+    icon: BookOpen,
+    title: 'Hương ước gia tộc',
+    desc: 'Lưu trữ và hiển thị hương ước, quy định dòng họ dạng bài viết có phiên bản.',
+    color: 'text-rose-600',
+    bg: 'bg-rose-50',
+  },
+  {
+    icon: Utensils,
+    title: 'Cầu đường — phân công lễ hội',
+    desc: 'Thuật toán DFS tự động xoay vòng phân công cúng lễ công bằng giữa các gia đình.',
+    color: 'text-orange-600',
+    bg: 'bg-orange-50',
+  },
+  {
+    icon: Heart,
+    title: 'Quan hệ gia đình đầy đủ',
+    desc: 'Cha mẹ, anh chị em, vợ/chồng, con cái — thêm/xóa trực tiếp từ trang cá nhân.',
+    color: 'text-pink-600',
+    bg: 'bg-pink-50',
+  },
+  {
+    icon: Shield,
+    title: 'Bảo mật & phân quyền 4 cấp',
+    desc: 'Row Level Security trên Supabase: admin, editor, viewer, guest — bảo vệ dữ liệu cá nhân.',
+    color: 'text-slate-600',
+    bg: 'bg-slate-50',
+  },
+];
+
+const techStack = [
+  'Next.js 16', 'React 19', 'TypeScript', 'Tailwind CSS 4',
+  'Supabase (PostgreSQL)', 'shadcn/ui', 'Electron', 'sql.js (SQLite WASM)',
+];
+
+// -- Page --
+
+export default function WelcomePage() {
+  return (
+    <div className="flex flex-col">
+      {/* ───── 1. Hero ───── */}
+      <section className="relative bg-gradient-to-br from-emerald-800 to-emerald-950 text-white overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-400 rounded-full blur-3xl" />
+          <div className="absolute bottom-10 right-20 w-96 h-96 bg-emerald-300 rounded-full blur-3xl" />
+        </div>
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 text-center">
+          <Badge variant="secondary" className="mb-6 text-sm px-4 py-1">
+            Open Source &middot; MIT License &middot; v2.1.0
+          </Badge>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-4">
+            Gia Phả Điện Tử
+          </h1>
+          <p className="text-lg sm:text-xl text-emerald-100 max-w-2xl mx-auto mb-10">
+            Gìn giữ tinh hoa — Tiếp bước cha ông
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button size="lg" variant="secondary" asChild>
+              <a href="#download">
+                <Download className="mr-2 h-5 w-5" />
+                Tải về máy tính
+              </a>
+            </Button>
+            <Button size="lg" className="bg-white/10 border border-white/30 text-white hover:bg-white/20" asChild>
+              <a href={GITHUB_REPO} target="_blank" rel="noopener noreferrer">
+                <Code2 className="mr-2 h-5 w-5" />
+                Mã nguồn GitHub
+              </a>
+            </Button>
+          </div>
+          <div className="mt-6">
+            <Button variant="link" className="text-emerald-200 hover:text-white" asChild>
+              <Link href="/login">
+                <LogIn className="mr-2 h-4 w-4" />
+                Con cháu họ Đặng làng Kỷ Các — Đăng nhập
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* ───── 2. Features ───── */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">Tính năng nổi bật</h2>
+            <p className="text-gray-500 max-w-xl mx-auto">
+              Giải pháp toàn diện cho quản lý gia phả — từ cây phả hệ đến lễ nghi truyền thống.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {features.map((f) => (
+              <Card key={f.title} className="border-0 shadow-sm hover:shadow-md transition-shadow">
+                <CardHeader className="pb-3">
+                  <div className={`w-10 h-10 rounded-lg ${f.bg} flex items-center justify-center mb-3`}>
+                    <f.icon className={`h-5 w-5 ${f.color}`} />
+                  </div>
+                  <CardTitle className="text-base">{f.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-gray-500 leading-relaxed">{f.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ───── 3. Screenshots ───── */}
+      <section className="py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">Giao diện ứng dụng</h2>
+            <p className="text-gray-500">Thiết kế hiện đại, hỗ trợ tiếng Việt, tương thích di động.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              { src: '/screenshots/tree-view.png', alt: 'Cây gia phả tương tác', label: 'Cây gia phả' },
+              { src: '/screenshots/people-list.png', alt: 'Quản lý thành viên', label: 'Danh sách thành viên' },
+              { src: '/screenshots/admin-panel.png', alt: 'Trang quản trị', label: 'Trang quản trị' },
+              { src: '/screenshots/mobile-view.png', alt: 'Giao diện di động', label: 'Di động' },
+            ].map((img) => (
+              <div key={img.src} className="group relative rounded-xl overflow-hidden border bg-gray-100 aspect-video flex items-center justify-center">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <span className="absolute bottom-3 left-4 text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                  {img.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ───── 4. Hướng dẫn sử dụng ───── */}
+      <section id="guide" className="py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">Hướng dẫn sử dụng</h2>
+            <p className="text-gray-500 max-w-2xl mx-auto">
+              Tổng quan các chức năng chính và cách sử dụng ứng dụng.
+            </p>
+          </div>
+
+          {/* Navigation overview */}
+          <div className="mb-14">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Thanh điều hướng</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 max-w-4xl mx-auto">
+              {[
+                { name: 'Trang chủ', desc: 'Tổng quan, thống kê' },
+                { name: 'Cây phả hệ', desc: 'Sơ đồ cây gia phả' },
+                { name: 'Thành viên', desc: 'Quản lý thành viên' },
+                { name: 'Thư mục', desc: 'Danh bạ liên lạc' },
+                { name: 'Sự kiện', desc: 'Ngày giỗ, lễ tết' },
+                { name: 'Vinh danh', desc: 'Thành tích con cháu' },
+                { name: 'Quỹ khuyến học', desc: 'Thu chi, học bổng' },
+                { name: 'Hương ước', desc: 'Gia huấn, quy ước' },
+                { name: 'Cầu đương', desc: 'Phân công cúng lễ' },
+                { name: 'Gia phả sách', desc: 'Xuất dạng sách' },
+                { name: 'Quản trị', desc: 'Cài đặt hệ thống' },
+              ].map((item) => (
+                <div key={item.name} className="bg-white rounded-lg px-4 py-3 border shadow-sm">
+                  <p className="font-medium text-sm text-gray-900">{item.name}</p>
+                  <p className="text-xs text-gray-500">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Key workflows */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-14">
+            {[
+              {
+                title: 'Thêm thành viên',
+                steps: [
+                  'Nhấn "Thêm thành viên" ở trang Thành viên',
+                  'Điền họ tên, giới tính, đời, năm sinh',
+                  'Chọn Cha/Mẹ để tự động tạo quan hệ',
+                  'Nhấn Lưu — thành viên xuất hiện trên cây',
+                ],
+              },
+              {
+                title: 'Xem cây gia phả',
+                steps: [
+                  'Vào Cây phả hệ từ thanh điều hướng',
+                  'Cuộn chuột để thu phóng, kéo để di chuyển',
+                  'Click vào thành viên để xem chi tiết',
+                  'Chọn "Xem cây từ đây" để lọc theo nhánh',
+                ],
+              },
+              {
+                title: 'Quản lý sự kiện & ngày giỗ',
+                steps: [
+                  'Ngày giỗ tự động tính từ ngày mất âm lịch',
+                  'Thêm sự kiện: Giỗ, Lễ/Tết, hoặc Khác',
+                  'Chọn ngày âm lịch và người liên quan',
+                  'Bật "Lặp lại hàng năm" cho ngày giỗ',
+                ],
+              },
+              {
+                title: 'Sao lưu dữ liệu (Desktop)',
+                steps: [
+                  'Dữ liệu lưu tại ~/AncestorTree/',
+                  'Copy thư mục ra USB hoặc Google Drive',
+                  'Khôi phục: copy ngược về ~/AncestorTree/',
+                  'Nên sao lưu ít nhất 1 lần/tháng',
+                ],
+              },
+            ].map((workflow) => (
+              <Card key={workflow.title}>
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-base">{workflow.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ol className="space-y-2">
+                    {workflow.steps.map((step, i) => (
+                      <li key={i} className="flex gap-3 text-sm text-gray-600">
+                        <span className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-xs flex items-center justify-center font-medium">
+                          {i + 1}
+                        </span>
+                        {step}
+                      </li>
+                    ))}
+                  </ol>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Usage tips */}
+          <div className="max-w-3xl mx-auto">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Mẹo sử dụng</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {[
+                'Bắt đầu từ thủy tổ — nhập thông tin từ đời cao nhất trở xuống',
+                'Chọn Cha/Mẹ ngay khi tạo thành viên để cây tự động cập nhật',
+                'Ghi ngày mất âm lịch — giúp tính ngày giỗ chính xác',
+                'Sao lưu thường xuyên — dữ liệu gia phả là tài sản vô giá',
+                'Dùng tìm kiếm khi gia phả lớn (>50 người) — nhanh hơn cuộn trang',
+              ].map((tip, i) => (
+                <div key={i} className="flex gap-3 bg-white rounded-lg px-4 py-3 border shadow-sm">
+                  <span className="flex-shrink-0 text-emerald-600 font-semibold text-sm">#{i + 1}</span>
+                  <p className="text-sm text-gray-600">{tip}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ───── 5. Download ───── */}
+      <section id="download" className="py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">Tải về Desktop</h2>
+            <p className="text-gray-500">
+              Sử dụng offline — không cần internet, dữ liệu lưu trên máy tính cá nhân.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+            {/* Windows */}
+            <Card className="text-center">
+              <CardHeader>
+                <div className="mx-auto w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-2">
+                  <Monitor className="h-6 w-6 text-blue-600" />
+                </div>
+                <CardTitle className="text-lg">Windows</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <Badge className="bg-emerald-100 text-emerald-700">v2.1.0</Badge>
+                <p className="text-sm text-gray-500">Windows 10 trở lên &middot; .exe installer</p>
+                <Button className="w-full" asChild>
+                  <a href={`${GITHUB_RELEASES}/download/v2.1.0/AncestorTree.Setup.2.1.0.exe`}>
+                    <Download className="mr-2 h-4 w-4" />
+                    Tải AncestorTree.exe
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* macOS */}
+            <Card className="text-center">
+              <CardHeader>
+                <div className="mx-auto w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mb-2">
+                  <Apple className="h-6 w-6 text-gray-700" />
+                </div>
+                <CardTitle className="text-lg">macOS</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <Badge className="bg-emerald-100 text-emerald-700">v2.1.0</Badge>
+                <p className="text-sm text-gray-500">macOS 12+ &middot; Intel &amp; Apple Silicon</p>
+                <div className="flex gap-2">
+                  <Button className="flex-1" size="sm" asChild>
+                    <a href={`${GITHUB_RELEASES}/download/v2.1.0/AncestorTree-2.1.0-arm64.dmg`}>
+                      <Download className="mr-1 h-4 w-4" />
+                      Apple Silicon
+                    </a>
+                  </Button>
+                  <Button className="flex-1" size="sm" variant="outline" asChild>
+                    <a href={`${GITHUB_RELEASES}/download/v2.1.0/AncestorTree-2.1.0.dmg`}>
+                      <Download className="mr-1 h-4 w-4" />
+                      Intel
+                    </a>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+          <p className="text-center text-sm text-gray-400 mt-6">
+            Ứng dụng chưa được ký code (unsigned). macOS: System Settings &rarr; Privacy &amp; Security &rarr; Allow.
+            Windows: SmartScreen &rarr; More info &rarr; Run anyway.{' '}
+            <a href={GITHUB_RELEASES} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-600">
+              Tất cả phiên bản
+            </a>.
+          </p>
+        </div>
+      </section>
+
+      {/* ───── 6. Câu hỏi thường gặp ───── */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">Câu hỏi thường gặp</h2>
+            <p className="text-gray-500">Giải đáp các thắc mắc phổ biến.</p>
+          </div>
+
+          {/* Desktop vs Web comparison */}
+          <div className="max-w-3xl mx-auto mb-12">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Desktop vs Web</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse bg-white rounded-lg overflow-hidden shadow-sm">
+                <thead>
+                  <tr className="bg-emerald-50">
+                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900" />
+                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900">Desktop</th>
+                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900">Web</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y">
+                  {[
+                    { label: 'Dữ liệu', desktop: 'Lưu trên máy (SQLite)', web: 'Cloud (Supabase)' },
+                    { label: 'Internet', desktop: 'Không cần', web: 'Cần kết nối' },
+                    { label: 'Người dùng', desktop: '1 người (admin)', web: 'Nhiều người, phân quyền' },
+                    { label: 'Cài đặt', desktop: 'Tải file, click cài', web: 'Cần Node.js, Docker' },
+                    { label: 'Chức năng', desktop: 'Giống nhau 100%', web: 'Giống nhau 100%' },
+                  ].map((row) => (
+                    <tr key={row.label}>
+                      <td className="px-4 py-3 text-sm font-medium text-gray-900">{row.label}</td>
+                      <td className="px-4 py-3 text-sm text-gray-600">{row.desktop}</td>
+                      <td className="px-4 py-3 text-sm text-gray-600">{row.web}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* FAQ items */}
+          <div className="max-w-3xl mx-auto space-y-4">
+            {[
+              {
+                q: 'Dữ liệu có mất khi cập nhật ứng dụng không?',
+                a: 'Không. Dữ liệu được lưu riêng trong thư mục ~/AncestorTree/, không bị ảnh hưởng khi cập nhật.',
+              },
+              {
+                q: 'Có thể chuyển dữ liệu từ Desktop sang Web không?',
+                a: 'Có. Sử dụng tính năng Export/Import (sẽ có trong phiên bản tương lai).',
+              },
+              {
+                q: 'Ứng dụng hỗ trợ bao nhiêu thành viên?',
+                a: 'Không giới hạn cứng. Đã test tốt với 500+ thành viên, 10+ đời.',
+              },
+              {
+                q: 'Ai có quyền chỉnh sửa dữ liệu?',
+                a: 'Bản Web: Admin toàn quyền, Editor thêm/sửa/xóa, Viewer chỉ xem, Guest xem công khai. Bản Desktop: bạn tự động là Admin.',
+              },
+            ].map((item) => (
+              <Card key={item.q}>
+                <CardContent className="pt-6">
+                  <h4 className="font-semibold text-gray-900 mb-2">{item.q}</h4>
+                  <p className="text-sm text-gray-600">{item.a}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ───── 7. Community ───── */}
+      <section className="py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">Cộng đồng</h2>
+            <p className="text-gray-500">Góp ý, báo lỗi, hoặc đề xuất tính năng mới.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
+            <Card className="hover:shadow-md transition-shadow">
+              <CardContent className="pt-6 text-center space-y-3">
+                <div className="mx-auto w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center">
+                  <Bug className="h-5 w-5 text-red-600" />
+                </div>
+                <h3 className="font-semibold">Báo lỗi</h3>
+                <p className="text-sm text-gray-500">Phát hiện lỗi? Tạo issue trên GitHub.</p>
+                <Button variant="outline" size="sm" asChild>
+                  <a href={`${GITHUB_ISSUES}/new?template=bug_report.md`} target="_blank" rel="noopener noreferrer">
+                    Báo lỗi <ChevronRight className="ml-1 h-4 w-4" />
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
+            <Card className="hover:shadow-md transition-shadow">
+              <CardContent className="pt-6 text-center space-y-3">
+                <div className="mx-auto w-10 h-10 bg-amber-50 rounded-lg flex items-center justify-center">
+                  <Lightbulb className="h-5 w-5 text-amber-600" />
+                </div>
+                <h3 className="font-semibold">Đề xuất tính năng</h3>
+                <p className="text-sm text-gray-500">Ý tưởng mới? Hãy chia sẻ với chúng tôi.</p>
+                <Button variant="outline" size="sm" asChild>
+                  <a href={`${GITHUB_ISSUES}/new?template=feature_request.md`} target="_blank" rel="noopener noreferrer">
+                    Đề xuất <ChevronRight className="ml-1 h-4 w-4" />
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
+            <Card className="hover:shadow-md transition-shadow">
+              <CardContent className="pt-6 text-center space-y-3">
+                <div className="mx-auto w-10 h-10 bg-emerald-50 rounded-lg flex items-center justify-center">
+                  <MessageCircle className="h-5 w-5 text-emerald-600" />
+                </div>
+                <h3 className="font-semibold">Thảo luận & hỗ trợ</h3>
+                <p className="text-sm text-gray-500">Đặt câu hỏi, thảo luận với cộng đồng.</p>
+                <Button variant="outline" size="sm" asChild>
+                  <a href={GITHUB_DISCUSSIONS} target="_blank" rel="noopener noreferrer">
+                    Thảo luận <ChevronRight className="ml-1 h-4 w-4" />
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* ───── 8. For Developers ───── */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">Dành cho lập trình viên</h2>
+            <p className="text-gray-500 mb-8">
+              Mã nguồn mở MIT — fork, tùy chỉnh và deploy cho dòng họ của bạn trong 30 phút.
+            </p>
+            <div className="flex flex-wrap justify-center gap-2 mb-8">
+              {techStack.map((t) => (
+                <Badge key={t} variant="secondary" className="text-sm">
+                  {t}
+                </Badge>
+              ))}
+            </div>
+            <Button asChild>
+              <a href={GITHUB_REPO} target="_blank" rel="noopener noreferrer">
+                <Code2 className="mr-2 h-5 w-5" />
+                Xem mã nguồn trên GitHub
+              </a>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* ───── 9. Footer ───── */}
+      <footer className="border-t bg-white py-10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500">
+            <div className="flex items-center gap-2">
+              <span className="text-lg">🌳</span>
+              <span className="font-semibold text-gray-700">AncestorTree</span>
+              <span className="text-gray-400">v2.1.0</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <a href={GITHUB_REPO} target="_blank" rel="noopener noreferrer" className="hover:text-gray-700">
+                GitHub
+              </a>
+              <a href="https://github.com/Minh-Tam-Solution" target="_blank" rel="noopener noreferrer" className="hover:text-gray-700">
+                Minh Tam Solution
+              </a>
+              <a href="https://github.com/Minh-Tam-Solution/tinysdlc" target="_blank" rel="noopener noreferrer" className="hover:text-gray-700">
+                TinySDLC
+              </a>
+            </div>
+          </div>
+          <p className="text-center text-xs text-gray-400 mt-6">
+            &copy; 2026 AncestorTree — Built with TinySDLC &middot; MIT License
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}
